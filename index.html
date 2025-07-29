@@ -56,7 +56,7 @@
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
-        const socket = io("http://localhost:3000");
+        const socket = io("https://de1b79c8c888.ngrok-free.app");
 
         // --- STATE ---
         let userId = null;
@@ -83,7 +83,7 @@
 
         async function updateWallet() {
             if (!userId) return;
-            const res = await fetch(`/api/users/${userId}/wallet`);
+            const res = await fetch(`https://de1b79c8c888.ngrok-free.app/api/users/${userId}/wallet`);
             const data = await res.json();
             userInfoEl.innerHTML = `
                 <p><strong>UserID:</strong> ${userId.substring(0,8)}...</p>
@@ -96,7 +96,7 @@
         createUserBtn.addEventListener('click', async () => {
             const username = document.getElementById('username').value;
             if (!username) return alert('Please enter a username');
-            const res = await fetch('/api/users', {
+            const res = await fetch('https://de1b79c8c888.ngrok-free.app/api/users', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username }),
@@ -115,7 +115,7 @@
         placeBetBtn.addEventListener('click', async () => {
             const betAmountUSD = document.getElementById('betAmount').value;
             const currency = document.getElementById('currency').value;
-            const res = await fetch('/api/game/bet', {
+            const res = await fetch('https://de1b79c8c888.ngrok-free.app/api/game/bet', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userId, betAmountUSD: parseFloat(betAmountUSD), currency }),
